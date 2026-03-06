@@ -28,14 +28,17 @@ const ExperienceSection = () => (
           <div key={s.label} className="text-center space-y-3">
             <s.icon size={32} className="mx-auto text-muted-foreground" />
             <div className="font-display text-3xl sm:text-4xl font-bold text-foreground">
-              {s.value}
-            </div>
+              {s.value}     
+            </div>  
             <p className="text-sm text-muted-foreground uppercase tracking-wider font-medium">
               {s.label}
             </p>
           </div>
+
+
         ))}
       </div>
+    </div>
     </div>
   </section>
 );
