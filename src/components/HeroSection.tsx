@@ -8,7 +8,7 @@ const features = [
 ];
 
 const HeroSection = () => (
-  <section className="min-h-screen flex items-center pt-28 relative overflow-hidden">
+  <section className="min-h-screen flex items-center pt-16 relative overflow-hidden">
     {/* Subtle gradient orbs */}
     <div className="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px]" />
     <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]" />

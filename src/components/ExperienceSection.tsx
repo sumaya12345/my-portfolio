@@ -1,9 +1,10 @@
 import { Calendar, Code2, Users, Award } from "lucide-react";
 
 const stats = [
-  { icon: Calendar, value: "5+", label: "months Experience" },
-  { icon: Code2, value: "5+", label: "Projects " },
-  { icon: Award, value: "1+", label: "Certificate Won" },
+  { icon: Calendar, value: "1+", label: "Years Experience" },
+  { icon: Code2, value: "10+", label: "Projects Completed" },
+  { icon: Users, value: "7+", label: "Happy Clients" },
+  { icon: Award, value: "1+", label: "Awards Won" },
 ];
 
 const ExperienceSection = () => (
@@ -22,6 +23,7 @@ const ExperienceSection = () => (
       </h2>
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
         {stats.map((s) => (
           <div key={s.label} className="text-center space-y-3">
             <s.icon size={32} className="mx-auto text-muted-foreground" />

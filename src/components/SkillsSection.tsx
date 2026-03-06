@@ -61,7 +61,7 @@ const SkillsSection = () => {
         {/* Tab content */}
         <div className="mt-12">
           {activeTab === 0 && (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
               {technicalCategories.map((cat) => (
                 <div key={cat.title} className="text-center space-y-4">
                   <cat.icon size={36} className="mx-auto text-primary" />
