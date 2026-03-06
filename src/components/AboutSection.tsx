@@ -1,7 +1,7 @@
 import profileImg from "./images/WhatsApp Image 2026-03-06 at 17.06.47.jpeg";
 
 const AboutSection = () => (
-  <section id="about" className="section-padding bg-card">
+  <section id="about" className="section-padding bg-card mt-20">
     <div className="section-container">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         {/* Image */}
