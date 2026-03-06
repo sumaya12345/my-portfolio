@@ -1,52 +1,113 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { Monitor, Palette, Sparkles, Server } from "lucide-react";
 
-const skills = [
-  { name: "HTML", level: 95 },
-  { name: "CSS / Tailwind", level: 90 },
-  { name: "JavaScript", level: 88 },
-  { name: "React.js", level: 85 },
-  { name: "TypeScript", level: 75 },
-  { name: "Git & GitHub", level: 80 },
+const tabs = ["Technical Skills", "Soft Skills", "Tools"];
+
+const technicalCategories = [
+  {
+    icon: Monitor,
+    title: "Frontend",
+    skills: ["React", "Next.js", "TypeScript", "Tailwind"],
+  },
+  {
+    icon: Palette,
+    title: "Design",
+    skills: ["Figma", "shadcn", "UI/UX", "ReactBits"],
+  },
+  {
+    icon: Sparkles,
+    title: "Animation",
+    skills: ["GSAP", "Framer Motion", "CSS", "WebGL"],
+  },
+  {
+    icon: Server,
+    title: "Backend",
+    skills: ["Node.js", "Python", "PostgreSQL", "FastAPI"],
+  },
 ];
 
-const SkillsSection = () => {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+const softSkills = ["Communication", "Problem Solving", "Teamwork", "Time Management", "Adaptability", "Leadership"];
+const tools = ["VS Code", "Git & GitHub", "Vercel", "Postman", "Chrome DevTools", "npm/yarn"];
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.3 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+const SkillsSection = () => {
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <section id="skills" className="section-padding bg-card">
-      <div className="section-container" ref={ref}>
-        <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground text-center">
-          My <span className="gradient-text">Skills</span>
+      <div className="section-container">
+        <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground text-center uppercase tracking-wider">
+          Skills
         </h2>
-        <p className="text-center text-muted-foreground mt-4 max-w-lg mx-auto">
-          Technologies and tools I work with on a daily basis.
-        </p>
 
-        <div className="mt-12 max-w-xl mx-auto space-y-6">
-          {skills.map((s) => (
-            <div key={s.name}>
-              <div className="flex justify-between mb-1.5">
-                <span className="text-sm font-medium text-foreground">{s.name}</span>
-                <span className="text-sm text-muted-foreground">{s.level}%</span>
-              </div>
-              <div className="progress-bar">
-                <div
-                  className="progress-bar-fill"
-                  style={{ width: visible ? `${s.level}%` : "0%" }}
-                />
-              </div>
+        {/* Tabs */}
+        <div className="flex justify-center mt-8">
+          <div className="inline-flex items-center gap-1 p-1 rounded-full bg-muted border border-border">
+            {tabs.map((tab, i) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(i)}
+                className={`text-sm font-medium px-5 py-2 rounded-full transition-all ${
+                  activeTab === i
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Tab content */}
+        <div className="mt-12">
+          {activeTab === 0 && (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {technicalCategories.map((cat) => (
+                <div key={cat.title} className="text-center space-y-4">
+                  <cat.icon size={36} className="mx-auto text-primary" />
+                  <h3 className="font-display text-lg font-semibold text-foreground uppercase tracking-wider">
+                    {cat.title}
+                  </h3>
+                  <div className="space-y-2">
+                    {cat.skills.map((skill) => (
+                      <div
+                        key={skill}
+                        className="text-sm text-muted-foreground py-1.5 px-3 rounded-lg bg-background border border-border"
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
+
+          {activeTab === 1 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+              {softSkills.map((skill) => (
+                <div
+                  key={skill}
+                  className="text-center text-sm text-muted-foreground py-3 px-4 rounded-lg bg-background border border-border hover:border-primary/40 transition-colors"
+                >
+                  {skill}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 2 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+              {tools.map((tool) => (
+                <div
+                  key={tool}
+                  className="text-center text-sm text-muted-foreground py-3 px-4 rounded-lg bg-background border border-border hover:border-primary/40 transition-colors"
+                >
+                  {tool}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
